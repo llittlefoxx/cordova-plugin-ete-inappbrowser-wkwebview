@@ -83,7 +83,7 @@
   "name": "cordova-plugin-ete-inappbrowser-wkwebview",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/dpa99c/cordova-plugin-ete-inappbrowser-wkwebview.git"
+    "url": "git+https://github.com/llittlefoxx/cordova-plugin-ete-inappbrowser-wkwebview.git"
   },
   "scripts": {
     "jshint": "node node_modules/jshint/bin/jshint www && node node_modules/jshint/bin/jshint src && node node_modules/jshint/bin/jshint tests",
