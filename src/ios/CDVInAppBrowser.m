@@ -461,6 +461,14 @@
         [theWebView stopLoading];
         [self openInSystem:url];
         return NO;
+    }else if(![url.scheme  isEqualToString: @"https"] && ![url.scheme  isEqualToString: @"http"] && ![url.scheme  isEqualToString: @"gap-iab"]){
+        UIApplication *app = [UIApplication sharedApplication];
+        if([app canOpenURL:url]){
+            [app openURL:url];
+            return NO;
+        }else {
+            NSLog(@"the following url scheme ( %@ ) cannot be opened ", url.scheme);
+        }
     }
     else if ((self.callbackId != nil) && isTopLevelNavigation) {
         // Send a loadstart event for each top-level navigation (includes redirects).
