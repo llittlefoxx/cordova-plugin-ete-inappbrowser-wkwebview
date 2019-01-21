@@ -906,7 +906,7 @@ BOOL isExiting = FALSE;
 
 - (void)navigateTo:(NSURL*)url
 {
-    NSURLRequest* request = [NSURLRequest requestWithURL:url];
+    NSURLRequest* request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:60];
     [NSURLRequest setAllowsAnyHTTPSCertificate:YES forHost:[url host]];
     if (_userAgentLockToken != 0) {
         [self.webView loadRequest:request];
