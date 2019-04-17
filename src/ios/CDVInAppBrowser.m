@@ -135,6 +135,47 @@
                 [storage deleteCookie:cookie];
             }
         }
+                if (@available(iOS 11.3, *)) {
+            NSSet *websiteDataTypes11 = [NSSet setWithArray:@[
+                                                            WKWebsiteDataTypeDiskCache,
+                                                            WKWebsiteDataTypeOfflineWebApplicationCache,
+                                                            WKWebsiteDataTypeMemoryCache,
+                                                            WKWebsiteDataTypeLocalStorage,
+                                                            WKWebsiteDataTypeCookies,
+                                                            WKWebsiteDataTypeSessionStorage,
+                                                            WKWebsiteDataTypeIndexedDBDatabases,
+                                                            WKWebsiteDataTypeWebSQLDatabases,
+                                                            WKWebsiteDataTypeFetchCache, //(iOS 11.3, *)
+                                                            WKWebsiteDataTypeServiceWorkerRegistrations, //(iOS 11.3, *)
+                                                            ]];
+            // All kinds of data
+            // NSSet *websiteDataTypes = [WKWebsiteDataStore allWebsiteDataTypes];
+            // Date from
+            NSDate *dateFrom11 = [NSDate dateWithTimeIntervalSince1970:0];
+            // Execute
+            [[WKWebsiteDataStore defaultDataStore] removeDataOfTypes:websiteDataTypes11 modifiedSince:dateFrom11 completionHandler:^{
+                // Done
+            }];
+        } else {
+            NSSet *websiteDataTypes = [NSSet setWithArray:@[
+                                                            WKWebsiteDataTypeDiskCache,
+                                                            WKWebsiteDataTypeOfflineWebApplicationCache,
+                                                            WKWebsiteDataTypeMemoryCache,
+                                                            WKWebsiteDataTypeLocalStorage,
+                                                            WKWebsiteDataTypeCookies,
+                                                            WKWebsiteDataTypeSessionStorage,
+                                                            WKWebsiteDataTypeIndexedDBDatabases,
+                                                            WKWebsiteDataTypeWebSQLDatabases,
+                                                            ]];
+            // All kinds of data
+            // NSSet *websiteDataTypes = [WKWebsiteDataStore allWebsiteDataTypes];
+            // Date from
+            NSDate *dateFrom = [NSDate dateWithTimeIntervalSince1970:0];
+            // Execute
+            [[WKWebsiteDataStore defaultDataStore] removeDataOfTypes:websiteDataTypes modifiedSince:dateFrom completionHandler:^{
+                // Done
+            }];
+        }
     }
     
     if (browserOptions.clearsessioncache) {
